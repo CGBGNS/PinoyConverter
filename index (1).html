@@ -1,0 +1,1071 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Convertidor a pesos filipinos</title>
+  <meta name="description" content="Convertidor de divisas a pesos filipinos con comparativa editable de casas de cambio.">
+  <style>
+    :root {
+      --bg: #eef4ff;
+      --bg-accent: #dbeafe;
+      --card: rgba(255, 255, 255, 0.88);
+      --card-strong: #ffffff;
+      --line: rgba(15, 23, 42, 0.08);
+      --text: #0f172a;
+      --muted: #475569;
+      --primary: #2563eb;
+      --primary-soft: rgba(37, 99, 235, 0.12);
+      --success: #059669;
+      --danger: #dc2626;
+      --shadow: 0 20px 40px rgba(15, 23, 42, 0.10);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.18), transparent 32rem),
+        radial-gradient(circle at top right, rgba(16, 185, 129, 0.12), transparent 28rem),
+        linear-gradient(180deg, #f8fbff 0%, var(--bg) 100%);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 40px;
+    }
+
+    .card {
+      background: var(--card);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 34px;
+      margin-bottom: 22px;
+      background:
+        linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(255, 255, 255, 0.88)),
+        var(--card);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      right: -80px;
+      top: -80px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.20) 0%, rgba(37, 99, 235, 0) 70%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(37, 99, 235, 0.12);
+      color: var(--primary);
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin-bottom: 18px;
+    }
+
+    h1, h2, p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 1.06;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      max-width: 760px;
+      font-size: 1.02rem;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-weight: 600;
+      color: #1e293b;
+      font-size: 0.92rem;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.85fr);
+      gap: 22px;
+      margin-bottom: 22px;
+    }
+
+    .converter,
+    .side-card,
+    .table-card {
+      padding: 28px;
+    }
+
+    .section-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .section-head h2 {
+      font-size: 1.35rem;
+      line-height: 1.2;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.86rem;
+      border: 1px solid transparent;
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+
+    .badge.subtle {
+      background: rgba(15, 23, 42, 0.05);
+      color: #1e293b;
+      border-color: var(--line);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .field {
+      display: grid;
+      gap: 9px;
+    }
+
+    .field span {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #1e293b;
+    }
+
+    .input,
+    .select,
+    .button {
+      width: 100%;
+      border: 1px solid rgba(15, 23, 42, 0.10);
+      background: var(--card-strong);
+      color: var(--text);
+      border-radius: 16px;
+      min-height: 54px;
+      padding: 0 16px;
+      font: inherit;
+      outline: none;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+    }
+
+    .input:focus,
+    .select:focus {
+      border-color: rgba(37, 99, 235, 0.40);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.10);
+    }
+
+    .button {
+      cursor: pointer;
+      border: none;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: white;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      box-shadow: 0 14px 26px rgba(37, 99, 235, 0.22);
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button:disabled {
+      cursor: not-allowed;
+      opacity: 0.55;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .result-panel {
+      margin-top: 18px;
+      padding: 22px;
+      border-radius: 22px;
+      background:
+        linear-gradient(145deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.96));
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .result-label {
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.74);
+      margin-bottom: 10px;
+    }
+
+    .result-value {
+      font-size: clamp(2.1rem, 4vw, 3rem);
+      line-height: 1.05;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+      word-break: break-word;
+    }
+
+    .result-rate {
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 1rem;
+      margin-bottom: 16px;
+    }
+
+    .api-meta {
+      display: grid;
+      gap: 6px;
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 0.92rem;
+    }
+
+    .status-message {
+      min-height: 1.4em;
+      margin-top: 12px;
+      font-size: 0.92rem;
+      color: #dbeafe;
+    }
+
+    .status-message.error {
+      color: #fecaca;
+    }
+
+    .side-card {
+      display: grid;
+      gap: 18px;
+      align-content: start;
+    }
+
+    .side-card h2 {
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+    }
+
+    .side-card p {
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .edit-steps {
+      display: grid;
+      gap: 12px;
+    }
+
+    .step {
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(15, 23, 42, 0.03);
+      border: 1px solid var(--line);
+    }
+
+    .step strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.95rem;
+    }
+
+    .code {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background: rgba(37, 99, 235, 0.10);
+      color: var(--primary);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92rem;
+    }
+
+    .table-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .table-head h2 {
+      margin-bottom: 6px;
+      font-size: 1.35rem;
+    }
+
+    .table-head p {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--card-strong);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 16px 18px;
+      vertical-align: top;
+      border-bottom: 1px solid var(--line);
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: #f8fafc;
+      font-size: 0.92rem;
+      color: #334155;
+      letter-spacing: 0.01em;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    tbody tr:hover {
+      background: rgba(37, 99, 235, 0.03);
+    }
+
+    .featured-row {
+      background: rgba(37, 99, 235, 0.04);
+    }
+
+    .provider-cell {
+      display: grid;
+      gap: 8px;
+    }
+
+    .provider-link {
+      font-weight: 800;
+      color: #0f172a;
+      text-decoration: none;
+    }
+
+    .provider-link:hover {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+
+    .tag-featured,
+    .sort-hint {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .tag-featured {
+      color: var(--primary);
+      background: rgba(37, 99, 235, 0.10);
+    }
+
+    .sort-hint {
+      color: #475569;
+      background: rgba(15, 23, 42, 0.05);
+    }
+
+    .rate-strong {
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .rate-note {
+      margin-top: 6px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .delta-positive {
+      color: var(--success);
+    }
+
+    .delta-negative {
+      color: var(--danger);
+    }
+
+    .footer {
+      padding: 18px 4px 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 0.92rem;
+    }
+
+    .footer a {
+      color: var(--primary);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 920px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        width: min(100% - 20px, 1180px);
+        padding-top: 16px;
+        padding-bottom: 28px;
+      }
+
+      .hero,
+      .converter,
+      .side-card,
+      .table-card {
+        padding: 20px;
+        border-radius: 22px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head,
+      .table-head {
+        align-items: start;
+      }
+
+      .result-panel {
+        padding: 18px;
+      }
+
+      th,
+      td {
+        padding: 14px 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero card">
+      <div class="eyebrow">Responsive · GitHub Pages · JSON editable</div>
+      <h1>Convertidor de divisas a pesos filipinos</h1>
+      <p>Selecciona una divisa, introduce una cantidad y obtén la conversión a pesos filipinos. Debajo verás una comparativa de casas de cambio cargada desde un JSON independiente para que puedas editar enlaces, tipos, comisiones y orden sin tocar el HTML.</p>
+      <div class="hero-badges">
+        <span class="pill">📱 Optimizado para móvil</span>
+        <span class="pill">🖥️ Listo para escritorio</span>
+        <span class="pill">⚙️ Sin backend</span>
+      </div>
+    </section>
+
+    <section class="layout">
+      <section class="converter card" aria-labelledby="converter-title">
+        <div class="section-head">
+          <h2 id="converter-title">Conversor</h2>
+          <span class="badge">Destino fijo: PHP</span>
+        </div>
+
+        <div class="form-grid">
+          <label class="field">
+            <span>Divisa origen</span>
+            <select id="currencySelect" class="select" aria-label="Seleccionar divisa"></select>
+          </label>
+
+          <label class="field">
+            <span>Cantidad</span>
+            <input id="amountInput" class="input" inputmode="decimal" type="text" value="100" placeholder="Ej. 100">
+          </label>
+        </div>
+
+        <button id="convertButton" class="button" type="button">Convertir ahora</button>
+
+        <div class="result-panel" aria-live="polite">
+          <div class="result-label">Recibirás aproximadamente</div>
+          <div id="resultValue" class="result-value">—</div>
+          <div id="resultRate" class="result-rate">Cargando tipo de cambio…</div>
+          <div class="api-meta">
+            <span id="lastUpdate">Conectando con la API…</span>
+            <span id="nextUpdate"></span>
+          </div>
+          <p id="statusMessage" class="status-message"></p>
+        </div>
+      </section>
+
+      <aside class="side-card card" aria-labelledby="edit-title">
+        <div>
+          <h2 id="edit-title">Cómo editar la tabla</h2>
+          <p>Solo tienes que cambiar <span class="code">casas-cambio.json</span>. El HTML ya está preparado para leer el contenido y reordenar la tabla automáticamente.</p>
+        </div>
+
+        <div class="edit-steps">
+          <div class="step">
+            <strong>1. Cambia los enlaces</strong>
+            Sustituye cada <span class="code">?ref=TU_CODIGO</span> por tu referido real.
+          </div>
+          <div class="step">
+            <strong>2. Reordena casas</strong>
+            Usa <span class="code">sortOrder</span> o <span class="code">sortOrderByCurrency</span>.
+          </div>
+          <div class="step">
+            <strong>3. Ajusta tarifas</strong>
+            Edita <span class="code">rateByCurrency</span> y <span class="code">feeByCurrency</span>.
+          </div>
+        </div>
+
+        <p>La app funciona bien en GitHub Pages porque solo necesita este <span class="code">index.html</span> y el JSON en la misma carpeta.</p>
+      </aside>
+    </section>
+
+    <section class="table-card card" aria-labelledby="table-title">
+      <div class="table-head">
+        <div>
+          <h2 id="table-title">Comparativa de casas de cambio</h2>
+          <p id="tableNote">Cargando comparativa…</p>
+        </div>
+        <span id="currentPairBadge" class="badge subtle">USD → PHP</span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Casa</th>
+              <th>Cambio aplicado</th>
+              <th>Comisión</th>
+              <th>Descripción</th>
+            </tr>
+          </thead>
+          <tbody id="providersBody">
+            <tr>
+              <td colspan="4">Cargando datos…</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>
+        La tabla se alimenta desde <span class="code">casas-cambio.json</span>. El tipo de mercado se obtiene desde
+        <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener noreferrer">Rates By Exchange Rate API</a>.
+      </p>
+    </footer>
+  </main>
+
+  <script>
+    const FX_CACHE_KEY = "php-converter-open-er-api-usd-v1";
+    const API_URL = "https://open.er-api.com/v6/latest/USD";
+    const PROVIDERS_URL = "./casas-cambio.json";
+    const TARGET_CURRENCY = "PHP";
+    const LOCALE = "es-ES";
+
+    const state = {
+      ratesData: null,
+      ratesStatus: "loading",
+      providers: [],
+      providerMeta: {},
+      marketRateToPhp: null
+    };
+
+    const displayNames = typeof Intl.DisplayNames === "function"
+      ? new Intl.DisplayNames([LOCALE], { type: "currency" })
+      : null;
+
+    const currencySelect = document.getElementById("currencySelect");
+    const amountInput = document.getElementById("amountInput");
+    const convertButton = document.getElementById("convertButton");
+    const resultValue = document.getElementById("resultValue");
+    const resultRate = document.getElementById("resultRate");
+    const lastUpdate = document.getElementById("lastUpdate");
+    const nextUpdate = document.getElementById("nextUpdate");
+    const statusMessage = document.getElementById("statusMessage");
+    const providersBody = document.getElementById("providersBody");
+    const tableNote = document.getElementById("tableNote");
+    const currentPairBadge = document.getElementById("currentPairBadge");
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    function safeUrl(url) {
+      try {
+        const parsed = new URL(url, window.location.href);
+        return /^https?:$/i.test(parsed.protocol) ? parsed.href : "#";
+      } catch {
+        return "#";
+      }
+    }
+
+    function getCurrencyName(code) {
+      try {
+        return displayNames?.of(code) || code;
+      } catch {
+        return code;
+      }
+    }
+
+    function formatDateTime(date) {
+      return new Intl.DateTimeFormat(LOCALE, {
+        dateStyle: "medium",
+        timeStyle: "short"
+      }).format(date);
+    }
+
+    function formatPhpAmount(value) {
+      return new Intl.NumberFormat(LOCALE, {
+        style: "currency",
+        currency: TARGET_CURRENCY,
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }).format(value);
+    }
+
+    function formatRate(value) {
+      const min = value < 1 ? 4 : 2;
+      const max = value < 1 ? 6 : 4;
+      return new Intl.NumberFormat(LOCALE, {
+        minimumFractionDigits: min,
+        maximumFractionDigits: max
+      }).format(value) + " " + TARGET_CURRENCY;
+    }
+
+    function formatSignedPercent(value) {
+      const absolute = new Intl.NumberFormat(LOCALE, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }).format(Math.abs(value));
+      const sign = value > 0 ? "+" : value < 0 ? "-" : "";
+      return sign + absolute + "%";
+    }
+
+    function parseAmount(rawValue) {
+      const normalized = String(rawValue ?? "")
+        .trim()
+        .replace(/\s+/g, "")
+        .replace(",", ".");
+      const amount = Number.parseFloat(normalized);
+      return Number.isFinite(amount) ? amount : Number.NaN;
+    }
+
+    function readCachedRates() {
+      try {
+        const raw = localStorage.getItem(FX_CACHE_KEY);
+        return raw ? JSON.parse(raw) : null;
+      } catch {
+        return null;
+      }
+    }
+
+    function writeCachedRates(data) {
+      try {
+        localStorage.setItem(FX_CACHE_KEY, JSON.stringify(data));
+      } catch {
+        // Ignorado si el navegador no permite almacenamiento.
+      }
+    }
+
+    async function loadRates() {
+      const cached = readCachedRates();
+      const hasFreshCache = cached?.time_next_update_unix && Date.now() < cached.time_next_update_unix * 1000;
+
+      if (hasFreshCache) {
+        state.ratesData = cached;
+        state.ratesStatus = "cached";
+        return;
+      }
+
+      try {
+        const response = await fetch(API_URL, { cache: "no-store" });
+        if (!response.ok) {
+          throw new Error("La API devolvió un error.");
+        }
+
+        const data = await response.json();
+
+        if (data.result !== "success" || typeof data.rates?.PHP !== "number") {
+          throw new Error("La respuesta de la API no es válida.");
+        }
+
+        state.ratesData = data;
+        state.ratesStatus = "network";
+        writeCachedRates(data);
+      } catch (error) {
+        if (cached) {
+          state.ratesData = cached;
+          state.ratesStatus = "stale-cache";
+          return;
+        }
+
+        state.ratesStatus = "error";
+        throw error;
+      }
+    }
+
+    async function loadProviders() {
+      const response = await fetch(PROVIDERS_URL, { cache: "no-store" });
+      if (!response.ok) {
+        throw new Error("No se pudo cargar casas-cambio.json.");
+      }
+
+      const data = await response.json();
+      state.providerMeta = data.meta || {};
+      state.providers = Array.isArray(data.providers) ? data.providers : [];
+    }
+
+    function getAvailableCurrencyCodes() {
+      if (state.ratesData?.rates) {
+        return Object.keys(state.ratesData.rates);
+      }
+
+      const codes = new Set(["USD", "EUR", "GBP", "PHP"]);
+      state.providers.forEach((provider) => {
+        const rateMap = provider.rateByCurrency || {};
+        Object.keys(rateMap).forEach((code) => codes.add(code));
+      });
+      return Array.from(codes);
+    }
+
+    function buildCurrencyOptions() {
+      const priority = ["USD", "EUR", "GBP", "AED", "SGD", "CAD", "AUD", "JPY", "PHP"];
+      const codes = Array.from(new Set(getAvailableCurrencyCodes()));
+      if (!codes.length) {
+        codes.push("USD");
+      }
+      const ordered = codes.sort((a, b) => {
+        const indexA = priority.includes(a) ? priority.indexOf(a) : 999;
+        const indexB = priority.includes(b) ? priority.indexOf(b) : 999;
+
+        if (indexA !== indexB) {
+          return indexA - indexB;
+        }
+
+        return getCurrencyName(a).localeCompare(getCurrencyName(b), LOCALE);
+      });
+
+      currencySelect.innerHTML = ordered
+        .map((code) => {
+          return `<option value="${escapeHtml(code)}">${escapeHtml(code)} · ${escapeHtml(getCurrencyName(code))}</option>`;
+        })
+        .join("");
+
+      const fallback = ordered.includes("USD") ? "USD" : ordered[0];
+      const preferred = ordered.includes(state.providerMeta.defaultCurrency)
+        ? state.providerMeta.defaultCurrency
+        : fallback;
+
+      currencySelect.value = preferred;
+      currentPairBadge.textContent = `${currencySelect.value} → ${TARGET_CURRENCY}`;
+    }
+
+    function getMarketRateToPhp(sourceCurrency) {
+      if (!state.ratesData?.rates) {
+        return null;
+      }
+
+      if (sourceCurrency === TARGET_CURRENCY) {
+        return 1;
+      }
+
+      if (sourceCurrency === "USD") {
+        return state.ratesData.rates[TARGET_CURRENCY];
+      }
+
+      const sourceRate = state.ratesData.rates[sourceCurrency];
+      const phpRate = state.ratesData.rates[TARGET_CURRENCY];
+
+      if (typeof sourceRate !== "number" || typeof phpRate !== "number" || sourceRate === 0) {
+        return null;
+      }
+
+      return phpRate / sourceRate;
+    }
+
+    function resolveMappedValue(map, key) {
+      if (!map || typeof map !== "object") {
+        return null;
+      }
+
+      if (Object.prototype.hasOwnProperty.call(map, key)) {
+        return map[key];
+      }
+
+      if (Object.prototype.hasOwnProperty.call(map, "default")) {
+        return map.default;
+      }
+
+      return null;
+    }
+
+    function getProviderRate(provider, currencyCode) {
+      const value = resolveMappedValue(provider.rateByCurrency, currencyCode);
+      return typeof value === "number" ? value : null;
+    }
+
+    function getProviderFee(provider, currencyCode) {
+      const value = resolveMappedValue(provider.feeByCurrency, currencyCode);
+      return value != null ? String(value) : "Consultar";
+    }
+
+    function getProviderSortOrder(provider, currencyCode) {
+      const specific = resolveMappedValue(provider.sortOrderByCurrency, currencyCode);
+      if (Number.isFinite(Number(specific))) {
+        return Number(specific);
+      }
+
+      if (Number.isFinite(Number(provider.sortOrder))) {
+        return Number(provider.sortOrder);
+      }
+
+      return 999;
+    }
+
+    function syncStatusMessage() {
+      if (state.ratesStatus === "cached") {
+        statusMessage.textContent = "Usando la caché local para evitar llamadas innecesarias a la API.";
+        statusMessage.classList.remove("error");
+      } else if (state.ratesStatus === "stale-cache") {
+        statusMessage.textContent = "No se pudo refrescar la API: se muestra la última caché local disponible.";
+        statusMessage.classList.remove("error");
+      } else if (state.ratesStatus === "error") {
+        statusMessage.textContent = "No se pudo cargar la API de tipos de cambio.";
+        statusMessage.classList.add("error");
+      } else {
+        statusMessage.textContent = "";
+        statusMessage.classList.remove("error");
+      }
+    }
+
+    function renderApiStatus() {
+      if (!state.ratesData) {
+        lastUpdate.textContent = "No se pudo cargar la API de tipos de cambio.";
+        nextUpdate.textContent = "";
+        syncStatusMessage();
+        return;
+      }
+
+      const last = state.ratesData.time_last_update_utc ? new Date(state.ratesData.time_last_update_utc) : null;
+      const next = state.ratesData.time_next_update_utc ? new Date(state.ratesData.time_next_update_utc) : null;
+
+      lastUpdate.textContent = last
+        ? `Última actualización API: ${formatDateTime(last)}`
+        : "Tipo de cambio cargado";
+
+      nextUpdate.textContent = next
+        ? `Próxima actualización estimada: ${formatDateTime(next)}`
+        : "";
+
+      syncStatusMessage();
+    }
+
+    function renderConversion() {
+      const sourceCurrency = currencySelect.value || "USD";
+      const amount = parseAmount(amountInput.value);
+      const marketRate = getMarketRateToPhp(sourceCurrency);
+      state.marketRateToPhp = marketRate;
+      currentPairBadge.textContent = `${sourceCurrency} → ${TARGET_CURRENCY}`;
+
+      if (marketRate == null) {
+        resultValue.textContent = "—";
+        resultRate.textContent = "No hay datos de conversión disponibles para esta divisa.";
+        convertButton.disabled = true;
+        return;
+      }
+
+      convertButton.disabled = false;
+      resultRate.textContent = `1 ${sourceCurrency} = ${formatRate(marketRate)}`;
+
+      if (!Number.isFinite(amount) || amount < 0) {
+        resultValue.textContent = "—";
+        statusMessage.textContent = "Introduce una cantidad válida para calcular la conversión.";
+        statusMessage.classList.add("error");
+        return;
+      }
+
+      syncStatusMessage();
+
+      const converted = amount * marketRate;
+      resultValue.textContent = formatPhpAmount(converted);
+    }
+
+    function renderTable() {
+      if (!state.providers.length) {
+        providersBody.innerHTML = '<tr><td colspan="4">No hay proveedores en casas-cambio.json.</td></tr>';
+        tableNote.textContent = "Añade proveedores al JSON para completar la comparativa.";
+        return;
+      }
+
+      const sourceCurrency = currencySelect.value || state.providerMeta.defaultCurrency || "USD";
+      const marketRate = getMarketRateToPhp(sourceCurrency);
+
+      const orderedProviders = [...state.providers].sort((a, b) => {
+        const orderA = getProviderSortOrder(a, sourceCurrency);
+        const orderB = getProviderSortOrder(b, sourceCurrency);
+
+        if (orderA !== orderB) {
+          return orderA - orderB;
+        }
+
+        const rateA = getProviderRate(a, sourceCurrency);
+        const rateB = getProviderRate(b, sourceCurrency);
+
+        if (rateA !== null && rateB !== null && rateA !== rateB) {
+          return rateB - rateA;
+        }
+
+        return String(a.name || "").localeCompare(String(b.name || ""), LOCALE);
+      });
+
+      const hasSpecificRates = orderedProviders.some((provider) => getProviderRate(provider, sourceCurrency) !== null);
+
+      tableNote.textContent = hasSpecificRates
+        ? (state.providerMeta.tableDescription || "El orden se lee desde el JSON.")
+        : `No hay tarifas manuales para ${sourceCurrency} en el JSON. Añade rateByCurrency.${sourceCurrency} y opcionalmente sortOrderByCurrency.${sourceCurrency}.`;
+
+      providersBody.innerHTML = orderedProviders.map((provider) => {
+        const rate = getProviderRate(provider, sourceCurrency);
+        const fee = getProviderFee(provider, sourceCurrency);
+        const sortOrder = getProviderSortOrder(provider, sourceCurrency);
+        const href = safeUrl(provider.link || "#");
+        const featured = sortOrder === 1;
+        let deltaHtml = "";
+
+        if (rate !== null && typeof marketRate === "number") {
+          const difference = ((rate / marketRate) - 1) * 100;
+          const deltaClass = difference >= 0 ? "delta-positive" : "delta-negative";
+          deltaHtml = `<div class="rate-note ${deltaClass}">${formatSignedPercent(difference)} vs mercado</div>`;
+        }
+
+        return `
+          <tr class="${featured ? "featured-row" : ""}">
+            <td>
+              <div class="provider-cell">
+                <a class="provider-link" href="${href}" target="_blank" rel="nofollow sponsored noopener noreferrer">${escapeHtml(provider.name || "Sin nombre")}</a>
+                ${featured
+                  ? '<span class="tag-featured">Destacada</span>'
+                  : `<span class="sort-hint">Orden JSON: ${escapeHtml(sortOrder)}</span>`}
+              </div>
+            </td>
+            <td>
+              <div class="rate-strong">${rate !== null ? formatRate(rate) : "No disponible"}</div>
+              ${deltaHtml}
+            </td>
+            <td>${escapeHtml(fee)}</td>
+            <td>${escapeHtml(provider.description || "")}</td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    function refreshUI() {
+      renderApiStatus();
+      renderConversion();
+      renderTable();
+    }
+
+    async function init() {
+      let providerError = null;
+      let ratesError = null;
+
+      try {
+        await loadProviders();
+      } catch (error) {
+        providerError = error;
+      }
+
+      try {
+        await loadRates();
+      } catch (error) {
+        ratesError = error;
+      }
+
+      buildCurrencyOptions();
+      refreshUI();
+
+      if (providerError && ratesError) {
+        statusMessage.textContent = "No se pudieron cargar ni la API ni el JSON local.";
+        statusMessage.classList.add("error");
+      } else if (ratesError) {
+        statusMessage.textContent = "No se pudo cargar la API de tipos de cambio.";
+        statusMessage.classList.add("error");
+      } else if (providerError) {
+        tableNote.textContent = "No se pudo cargar casas-cambio.json.";
+      }
+
+      currencySelect.addEventListener("change", refreshUI);
+      amountInput.addEventListener("input", renderConversion);
+      convertButton.addEventListener("click", refreshUI);
+    }
+
+    init();
+  </script>
+</body>
+</html>

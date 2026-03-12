@@ -1,0 +1,270 @@
+{
+  "meta": {
+    "defaultCurrency": "USD",
+    "tableTitle": "Casas de cambio recomendadas",
+    "tableDescription": "El orden se controla desde este JSON con sortOrder y sortOrderByCurrency. Los tipos y comisiones son ejemplos editables.",
+    "lastManualUpdate": "2026-03-11",
+    "referralNote": "Sustituye cada enlace ?ref=TU_CODIGO por tu referido real."
+  },
+  "providers": [
+    {
+      "name": "Wise",
+      "link": "https://wise.com/?ref=TU_CODIGO_WISE",
+      "sortOrder": 1,
+      "sortOrderByCurrency": {
+        "USD": 1,
+        "EUR": 1,
+        "GBP": 1,
+        "SGD": 2,
+        "AED": 2,
+        "CAD": 2,
+        "AUD": 2,
+        "JPY": 1
+      },
+      "rateByCurrency": {
+        "USD": 58.9567,
+        "EUR": 68.5785,
+        "GBP": 79.209,
+        "SGD": 46.3051,
+        "AED": 16.0487,
+        "CAD": 43.4181,
+        "AUD": 41.9837,
+        "JPY": 0.3732
+      },
+      "feeByCurrency": {
+        "USD": "2.49 USD",
+        "EUR": "2.19 EUR",
+        "GBP": "1.99 GBP",
+        "SGD": "2.99 SGD",
+        "AED": "10.00 AED",
+        "CAD": "3.49 CAD",
+        "AUD": "3.49 AUD",
+        "JPY": "250 JPY",
+        "default": "Variable según importe"
+      },
+      "description": "Ejemplo editable. Suele destacar por comisión transparente. Reemplaza el enlace por tu referido real si lo tienes."
+    },
+    {
+      "name": "Ria Money Transfer",
+      "link": "https://www.riafinancial.com/?ref=TU_CODIGO_RIA",
+      "sortOrder": 2,
+      "sortOrderByCurrency": {
+        "USD": 2,
+        "EUR": 4,
+        "GBP": 4,
+        "SGD": 3,
+        "AED": 3,
+        "CAD": 1,
+        "AUD": 4,
+        "JPY": 3
+      },
+      "rateByCurrency": {
+        "USD": 58.9272,
+        "EUR": 68.407,
+        "GBP": 79.0504,
+        "SGD": 46.2216,
+        "AED": 16.0375,
+        "CAD": 43.4225,
+        "AUD": 41.9081,
+        "JPY": 0.3726
+      },
+      "feeByCurrency": {
+        "USD": "2.99 USD",
+        "EUR": "2.99 EUR",
+        "GBP": "2.99 GBP",
+        "SGD": "3.99 SGD",
+        "AED": "12.00 AED",
+        "CAD": "3.99 CAD",
+        "AUD": "3.99 AUD",
+        "JPY": "300 JPY",
+        "default": "Variable según canal"
+      },
+      "description": "Ejemplo editable. Buena opción cuando quieres combinar tarifa competitiva y red amplia de pago."
+    },
+    {
+      "name": "Remitly",
+      "link": "https://www.remitly.com/?ref=TU_CODIGO_REMITLY",
+      "sortOrder": 3,
+      "sortOrderByCurrency": {
+        "USD": 3,
+        "EUR": 3,
+        "GBP": 3,
+        "SGD": 4,
+        "AED": 1,
+        "CAD": 3,
+        "AUD": 1,
+        "JPY": 2
+      },
+      "rateByCurrency": {
+        "USD": 58.8859,
+        "EUR": 68.4893,
+        "GBP": 79.09,
+        "SGD": 46.2124,
+        "AED": 16.0504,
+        "CAD": 43.3442,
+        "AUD": 41.9879,
+        "JPY": 0.3728
+      },
+      "feeByCurrency": {
+        "USD": "1.99 USD",
+        "EUR": "1.99 EUR",
+        "GBP": "1.99 GBP",
+        "SGD": "2.99 SGD",
+        "AED": "8.00 AED",
+        "CAD": "2.99 CAD",
+        "AUD": "2.99 AUD",
+        "JPY": "200 JPY",
+        "default": "Promociones según país"
+      },
+      "description": "Ejemplo editable. Puede interesar si priorizas ofertas de primer envío o campañas temporales."
+    },
+    {
+      "name": "WorldRemit",
+      "link": "https://www.worldremit.com/?ref=TU_CODIGO_WORLDREMIT",
+      "sortOrder": 4,
+      "sortOrderByCurrency": {
+        "USD": 4,
+        "EUR": 2,
+        "GBP": 2,
+        "SGD": 1,
+        "AED": 4,
+        "CAD": 4,
+        "AUD": 3,
+        "JPY": 4
+      },
+      "rateByCurrency": {
+        "USD": 58.8387,
+        "EUR": 68.5236,
+        "GBP": 79.1535,
+        "SGD": 46.3144,
+        "AED": 16.0295,
+        "CAD": 43.3355,
+        "AUD": 41.9165,
+        "JPY": 0.3726
+      },
+      "feeByCurrency": {
+        "USD": "2.99 USD",
+        "EUR": "2.49 EUR",
+        "GBP": "2.49 GBP",
+        "SGD": "2.49 SGD",
+        "AED": "12.00 AED",
+        "CAD": "3.49 CAD",
+        "AUD": "3.49 AUD",
+        "JPY": "250 JPY",
+        "default": "Según método de entrega"
+      },
+      "description": "Ejemplo editable. Interesante para comparar cuando la recepción en Filipinas cambia entre banco, efectivo o wallet."
+    },
+    {
+      "name": "Xoom",
+      "link": "https://www.xoom.com/?ref=TU_CODIGO_XOOM",
+      "sortOrder": 5,
+      "sortOrderByCurrency": {
+        "USD": 5,
+        "EUR": 5,
+        "GBP": 5,
+        "SGD": 5,
+        "AED": 5,
+        "CAD": 5,
+        "AUD": 5,
+        "JPY": 5
+      },
+      "rateByCurrency": {
+        "USD": 58.7797,
+        "EUR": 68.3727,
+        "GBP": 78.9711,
+        "SGD": 46.1753,
+        "AED": 16.0134,
+        "CAD": 43.2921,
+        "AUD": 41.866,
+        "JPY": 0.3723
+      },
+      "feeByCurrency": {
+        "USD": "3.99 USD",
+        "EUR": "3.99 EUR",
+        "GBP": "3.99 GBP",
+        "SGD": "4.99 SGD",
+        "AED": "15.00 AED",
+        "CAD": "4.99 CAD",
+        "AUD": "4.99 AUD",
+        "JPY": "350 JPY",
+        "default": "Variable"
+      },
+      "description": "Ejemplo editable. Recomendable revisarlo cuando el usuario ya opera dentro del ecosistema PayPal/Xoom."
+    },
+    {
+      "name": "MoneyGram",
+      "link": "https://www.moneygram.com/?ref=TU_CODIGO_MONEYGRAM",
+      "sortOrder": 6,
+      "sortOrderByCurrency": {
+        "USD": 6,
+        "EUR": 6,
+        "GBP": 6,
+        "SGD": 6,
+        "AED": 6,
+        "CAD": 6,
+        "AUD": 6,
+        "JPY": 6
+      },
+      "rateByCurrency": {
+        "USD": 58.7502,
+        "EUR": 68.3247,
+        "GBP": 78.9156,
+        "SGD": 46.1289,
+        "AED": 15.9893,
+        "CAD": 43.2573,
+        "AUD": 41.824,
+        "JPY": 0.3719
+      },
+      "feeByCurrency": {
+        "USD": "3.99 USD",
+        "EUR": "3.99 EUR",
+        "GBP": "3.99 GBP",
+        "SGD": "5.99 SGD",
+        "AED": "15.00 AED",
+        "CAD": "4.99 CAD",
+        "AUD": "4.99 AUD",
+        "JPY": "350 JPY",
+        "default": "Depende de la red de cobro"
+      },
+      "description": "Ejemplo editable. Útil cuando quieres comparar disponibilidad de cobro físico frente a tarifa total."
+    },
+    {
+      "name": "Western Union",
+      "link": "https://www.westernunion.com/?ref=TU_CODIGO_WU",
+      "sortOrder": 7,
+      "sortOrderByCurrency": {
+        "USD": 7,
+        "EUR": 7,
+        "GBP": 7,
+        "SGD": 7,
+        "AED": 7,
+        "CAD": 7,
+        "AUD": 7,
+        "JPY": 7
+      },
+      "rateByCurrency": {
+        "USD": 58.6617,
+        "EUR": 68.2012,
+        "GBP": 78.8125,
+        "SGD": 46.0825,
+        "AED": 15.9732,
+        "CAD": 43.2051,
+        "AUD": 41.782,
+        "JPY": 0.3715
+      },
+      "feeByCurrency": {
+        "USD": "4.99 USD",
+        "EUR": "4.99 EUR",
+        "GBP": "4.99 GBP",
+        "SGD": "6.99 SGD",
+        "AED": "18.00 AED",
+        "CAD": "5.99 CAD",
+        "AUD": "5.99 AUD",
+        "JPY": "400 JPY",
+        "default": "Variable según país y entrega"
+      },
+      "description": "Ejemplo editable. Amplia presencia internacional, pero conviene revisar siempre el spread y la comisión final."
+    }
+  ]
+}
