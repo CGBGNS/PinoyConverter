@@ -511,16 +511,6 @@
 </head>
 <body>
   <main class="page">
-    <section class="hero card">
-      <div class="eyebrow">Responsive · GitHub Pages · JSON editable</div>
-      <h1>Convertidor de divisas a pesos filipinos</h1>
-      <p>Selecciona una divisa, introduce una cantidad y obtén la conversión a pesos filipinos. Debajo verás una comparativa de casas de cambio cargada desde un JSON independiente para que puedas editar enlaces, tipos, comisiones y orden sin tocar el HTML.</p>
-      <div class="hero-badges">
-        <span class="pill">📱 Optimizado para móvil</span>
-        <span class="pill">🖥️ Listo para escritorio</span>
-        <span class="pill">⚙️ Sin backend</span>
-      </div>
-    </section>
 
     <section class="layout">
       <section class="converter card" aria-labelledby="converter-title">
@@ -555,29 +545,6 @@
         </div>
       </section>
 
-      <aside class="side-card card" aria-labelledby="edit-title">
-        <div>
-          <h2 id="edit-title">Cómo editar la tabla</h2>
-          <p>Solo tienes que cambiar <span class="code">casas-cambio.json</span>. El HTML ya está preparado para leer el contenido y reordenar la tabla automáticamente.</p>
-        </div>
-
-        <div class="edit-steps">
-          <div class="step">
-            <strong>1. Cambia los enlaces</strong>
-            Sustituye cada <span class="code">?ref=TU_CODIGO</span> por tu referido real.
-          </div>
-          <div class="step">
-            <strong>2. Reordena casas</strong>
-            Usa <span class="code">sortOrder</span> o <span class="code">sortOrderByCurrency</span>.
-          </div>
-          <div class="step">
-            <strong>3. Ajusta tarifas</strong>
-            Edita <span class="code">rateByCurrency</span> y <span class="code">feeByCurrency</span>.
-          </div>
-        </div>
-
-        <p>La app funciona bien en GitHub Pages porque solo necesita este <span class="code">index.html</span> y el JSON en la misma carpeta.</p>
-      </aside>
     </section>
 
     <section class="table-card card" aria-labelledby="table-title">
@@ -610,7 +577,7 @@
 
     <footer class="footer">
       <p>
-        La tabla se alimenta desde <span class="code">casas-cambio.json</span>. El tipo de mercado se obtiene desde
+        El tipo de mercado se obtiene desde
         <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener noreferrer">Rates By Exchange Rate API</a>.
       </p>
     </footer>
